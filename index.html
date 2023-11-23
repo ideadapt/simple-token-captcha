@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Token Captcha - Demo</title>
+    <script type="module">
+        import {dialogHtml, onValidationFailed, onValidationOk, renderCaptchaServerResult, texts} from "./defaults.mjs";
+        import {captchizeForms} from "./captchize-forms.mjs";
+
+        captchizeForms({
+            dialogId: 'simple-captcha-dialog',
+            texts,
+            dialogHtml,
+            onValidationFailed,
+            onValidationOk,
+            renderCaptchaServerResult
+        });
+    </script>
+    <style>
+        body > form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-flow: column;
+            margin: 3rem;
+        }
+    </style>
+</head>
+<body>
+<form action="submit.php" method="POST">
+    <label>
+        <input type="text" name="message" autofocus minlength="1">
+    </label>
+    <input type="hidden" name="simple-captcha-token">
+    <input type="hidden" name="simple-captcha-response">
+    <input type="submit" value="Submit!">
+    <p data-simple-captcha-result></p>
+</form>
+</body>
+</html>
